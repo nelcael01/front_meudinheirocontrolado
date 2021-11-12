@@ -1,10 +1,13 @@
-
+import { Layout } from "./App_styled";
+import Left from "./component/Left/Left";
+import Right from "./component/Right/Right";
 
 function App() {
   return (
-    <div>
-      Meu dinheiro Controlado
-    </div>
+    <Layout>
+      <Left/>
+      <Right/>
+    </Layout>
   );
 }
 
