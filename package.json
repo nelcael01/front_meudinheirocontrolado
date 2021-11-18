@@ -3,19 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mui/icons-material": "^5.1.1",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "classnames": "^2.2.6",
+    "moment": "^2.29.1",
+    "primeicons": "^5.0.0",
     "primereact": "^7.0.0",
-    "react-scripts": "4.0.3",
-    "styled-components": "^5.3.3",
-    "web-vitals": "^1.1.2",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-transition-group": "^4.4.1",
-    "primeicons": "^5.0.0",
-    "classnames":"^2.2.6"
-    
+    "react-router-dom": "^6.0.2",
+    "react-scripts": "4.0.3",
+    "react-transition-group": "^4.4.2",
+    "styled-components": "^5.3.3",
+    "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",

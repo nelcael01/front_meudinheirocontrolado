@@ -1,0 +1,4 @@
+.p-datatable-emptymessage > td {
+  text-align: center !important;
+  font-size: 1.4rem;
+}
