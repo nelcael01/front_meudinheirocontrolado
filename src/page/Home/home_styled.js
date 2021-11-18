@@ -9,3 +9,12 @@ export const Content = styled.div`
   width: 95vw;
   padding: 25px;
 `;
+
+export const More = styled.div`
+  position: absolute;
+  border-radius: 15px;
+  right: 25px;
+  bottom: 25px;
+  padding: 20px;
+  background-color: #10B981;
+`;

@@ -22,15 +22,15 @@ const Left = () => {
           <InputText value={telefone} placeholder="Seu telefone" onChange={(e) => setTelefone(e.target.values)} style={{width:'100%'}}/>
       </span>
       <span className="p-input-icon-left" style={{marginTop:'20px', width:'70%'}}>
-          <i className="pi pi-arrow-up" />
+          <i className="pi pi-map-marker" />
           <InputText value={endereco} placeholder="Seu endereço" onChange={(e) => setEndereco(e.target.values)} style={{width:'100%'}}/>
       </span>
       <span className="p-input-icon-left" style={{marginTop:'20px', width:'70%'}}>
-          <i className="pi pi-cog" />
+          <i className="pi pi-id-card" />
           <InputText value={cpf} placeholder="Seu CPF" onChange={(e) => setCpf(e.target.values)} style={{width:'100%'}}/>
       </span>
       <span className="p-input-icon-left" style={{marginTop:'20px', width:'70%'}}>
-          <i className="pi pi-ellipsis-h" />
+          <i className="pi pi-lock" />
           <InputText value={senha} placeholder="Sua senha" onChange={(e) => setSenha(e.target.values)} style={{width:'100%'}}/>
       </span>
       <h2 style={{color:"white", fontFamily:"Segoe UI"}}>Criar conta</h2>

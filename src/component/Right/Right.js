@@ -15,7 +15,7 @@ const Right = () => {
           <InputText value={nome} placeholder="Seu nome" onChange={(e) => setNome(e.target.values)} style={{width:'100%', backgroundColor:'#EEEEEE'}}/>
       </span>
       <span className="p-input-icon-left" style={{marginTop:'20px', width:'40%'}}>
-          <i className="pi pi-ellipsis-h" />
+          <i className="pi pi-lock" />
           <InputText value={senha} placeholder="Sua senha" onChange={(e) => setSenha(e.target.values)} style={{width:'100%', backgroundColor:'#EEEEEE'}} />
       </span>
       <Link to="/home" style={{outline:'none'}}> 
