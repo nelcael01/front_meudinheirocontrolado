@@ -1,4 +1,4 @@
-import gridCss  from '../../utilities/Grid.js';
+import gridCss  from '../../utilities/Grid'
 import './rotulo_style.css'
 
 const Rotulo = (props)  => {    
@@ -13,7 +13,7 @@ const Rotulo = (props)  => {
     return (
         <div className={colClasseCss()}>
             <div className={props.horizontal? 'content-rotulo rotulo-horizontal' : 'content-rotulo rotulo-vertical'}>
-                <div className="label-rotulo p-col-fixed label-destaque">
+                <div className="label-rotulo p-col-fixed label-destaque" style={{marginTop:'10px', marginBottom:'5px'}}>
                     <label >
                         { props.nome }
                         { props.obrigatorio? ( <span className='obrigatorio'>*</span> ) : '' }

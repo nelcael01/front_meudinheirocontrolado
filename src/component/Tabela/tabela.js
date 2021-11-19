@@ -70,8 +70,10 @@ const Index = (props) => {
   const actionBotoes = (rowData) => {
     return (
       <React.Fragment>
-        {props.onEditarDado && <Button type="button"   tooltip="Editar" tooltipOptions={{position: 'top'}}  icon="pi pi-pencil" className="p-button-warning" onClick={() => props.onEditarDado(rowData)} style={props.onExcluirDado ? { marginRight: ".5em" } : {}} />}
-        {props.onExcluirDado && <Button type="button" tooltip="Excluir" tooltipOptions={{position: 'top'}}  icon="pi pi-trash" className="p-button-danger" onClick={(e) => handleExcluir(e, rowData)} />}
+        <div style={{display:'flex'}}>
+          {props.onEditarDado && <Button type="button"   tooltip="Editar" tooltipOptions={{position: 'top'}}  icon="pi pi-pencil" className="p-button-warning" onClick={() => props.onEditarDado(rowData)} style={props.onExcluirDado ? { marginRight: ".5em" } : {}} />}
+          {props.onExcluirDado && <Button type="button" tooltip="Excluir" tooltipOptions={{position: 'top'}}  icon="pi pi-trash" className="p-button-danger" onClick={(e) => handleExcluir(e, rowData)} />}
+        </div>
         {props.onView &&
           <>
             <Button type="button" style={{marginLeft:'1vh', marginBottom:'1vh'}} tooltip="Visualizar" tooltipOptions={{position: 'top'}}  icon="pi pi-eye" className="Primary" onClick={() => props.onView(rowData)} />
