@@ -1,18 +1,36 @@
-import {useState} from 'react';
+// react
+import {useState, useEffect} from 'react';
+
+// styled_component
 import { Container, Content, More } from './home_styled';
-import {Menu} from '../../component/Menu/menu'
-import Tabela from '../../component/Tabela/tabela.js'
-import { camposTabela } from '../../Service';
+
+// service
+import { camposTabela, buscarAll } from '../../Service/Saida/';
+
+// primereact
 import { TabView, TabPanel } from 'primereact/tabview';
 
 // useformik
 import { useFormik } from "formik";
+
+// components
+import {Menu} from '../../component/Menu/menu'
+import Tabela from '../../component/Tabela/tabela.js'
 import Modaladicionar from './../../component/ModalAdionar/modalAdicionar';
+import axios from 'axios'
 
 const Home = () => {
 
   // estado do modal
   const [showPost, setShowPost] = useState(false);
+
+  const [dataSaida, setDataSaida] = useState();
+
+  useEffect(() => {
+    buscarAll().then((res) => {
+      console.log(res);
+  })
+  }, []);
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -44,7 +62,8 @@ const Home = () => {
           </TabPanel>
           <TabPanel header="Saida" >
             {/* <Tabela 
-              onEditarDado
+              // dados={}
+              // onEditarDado
               hasEventoAcao
               camposTabela={camposTabela}
             />  */}
