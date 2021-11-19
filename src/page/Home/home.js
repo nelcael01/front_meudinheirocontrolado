@@ -52,6 +52,18 @@ const Home = () => {
     initialValues: formSaida,
     validate: (data) => {
       let errors = {};
+      if (!data.categoriaDespesa.id_categoria_despesa) {
+        errors.categoriaDespesa = "Categoria despesa é preenchimento obrigatorio";
+      }
+      if (!data.descricao) {
+        errors.descricao = "Descrição é preenchimento obrigatorio";
+      }
+      if (!data.provento.id_provento) {
+        errors.provento = "Provento é preenchimento obrigatorio";
+      }
+      if (!data.valor) {
+        errors.valor = "Valor é preenchimento obrigatorio";
+      }
       
       return errors;
     },
@@ -69,10 +81,22 @@ const Home = () => {
     initialValues: formProvento,
     validate: (data) => {
       let errors = {};
-      
+      if (data.tipoEntrada.id_tipo_entrada) {
+        errors.tipoEntrada = "Tipo Entrada é preenchimento obrigatorio";
+      }
+      if (data.tipoMoeda.id_tipo_moeda) {
+        errors.tipoMoeda = "Tipo Moeda é preenchimento obrigatorio";
+      }
+      if (data.usuario.id_usuario) {
+        errors.usuario = "Tipo Moeda é preenchimento obrigatorio";
+      }
+      if (data.valor) {
+        errors.valor = "Valor é preenchimento obrigatorio";
+      }
       return errors;
     },
     onSubmit: async (data) => {
+      console.log('aaaaaaaaaaaaaa');
       // await imprimirAll(date).then((res) => {
       //     setBase64('data:application/pdf;base64,' + res.dadosRelatorioBase64)
       //     setActiveImprimir(true)
