@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 
 export function printToast({ severity = "success", summary = "", detail = "" }) {
   let maiorMessage = summary.length > detail.length ? summary : detail;
@@ -38,10 +37,6 @@ export const detailAlteracaoSucessoPadrao = "O registro foi alterado com sucesso
 
 export const summaryExclusaoSucessoPadrao = "Exclusão concluída";
 export const detailExclusaoSucessoPadrao = "O registro foi excluído com sucesso";
-
-export const getUUID = () => {
-  return uuidv4();
-};
 
 export const formatoContatos = ({ telefones }) => {
   telefones = telefones.split(" ");

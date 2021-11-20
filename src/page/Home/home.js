@@ -5,8 +5,8 @@ import {useState, useEffect} from 'react';
 import { Container, Content, More } from './home_styled';
 
 // service
-import { camposTabela as camposTabelaSaida, buscarAll as buscarAllSaidas, initFormSaida } from '../../Service/Saida/';
-import { camposTabela as camposTabelaProvento, buscarAll as buscarAllProvento, initFormProvento } from '../../Service/Provento/';
+import { camposTabela as camposTabelaSaida, buscarAll as buscarAllSaidas, initFormSaida, excluir as excluirSaida, salvar as salvarSaida } from '../../Service/Saida/';
+import { camposTabela as camposTabelaProvento, buscarAll as buscarAllProvento, initFormProvento, criar as criarProvento, excluir as excluirProvento, salvar as salvarProvento } from '../../Service/Provento/';
 
 // primereact
 import { TabView, TabPanel } from 'primereact/tabview';
@@ -18,15 +18,21 @@ import { useFormik } from "formik";
 import {Menu} from '../../component/Menu/menu'
 import Tabela from '../../component/Tabela/tabela.js'
 import Modaladicionar from './../../component/ModalAdionar/modalAdicionar';
+import Modaleditaprovento from '../../component/ModalEditarProvento/modalEditaProvento';
+import Modaleditarsaida from '../../component/ModalEditaSaida/modalEditarSaida';
 
 const Home = () => {
 
   // estado do modal
   const [showPost, setShowPost] = useState(false);
+  const [showPutProvento, setShowPutProvento] = useState(false);
+  const [showPutSaida, setShowPutSaida] = useState(false);
 
+  // estado formulario
   const [formSaida, setFormSaida] = useState(initFormSaida);
   const [formProvento, setFormProvento] = useState(initFormProvento);
 
+  // estados das tabelas
   const [dataSaida, setDataSaida] = useState();
   const [dataProvento, setDataProvento] = useState();
 
@@ -35,13 +41,9 @@ const Home = () => {
 
   useEffect(() => {
     buscarAllSaidas().then((res) => {
-      console.log("saida");
-      console.log(res.data);
       setDataSaida(res.data)
     })
     buscarAllProvento().then((res)=>{
-      console.log("saida");
-      console.log(res.data);
       setDataProvento(res.data)
     })
   }, []);
@@ -68,56 +70,73 @@ const Home = () => {
       return errors;
     },
     onSubmit: async (data) => {
-      // await imprimirAll(date).then((res) => {
-      //     setBase64('data:application/pdf;base64,' + res.dadosRelatorioBase64)
-      //     setActiveImprimir(true)
-      // });
+      console.log('saida');
+      await salvarSaida(data).then((res) => {
+        console.log('saida');
+        console.log('entrou aqui saida');
+      });
     },
   });
 
   // FORMIK PROVENTO
   const formikProvento = useFormik({
     enableReinitialize: true,
-    initialValues: formProvento,
-    validate: (data) => {
-      let errors = {};
-      if (data.tipoEntrada.id_tipo_entrada) {
-        errors.tipoEntrada = "Tipo Entrada é preenchimento obrigatorio";
-      }
-      if (data.tipoMoeda.id_tipo_moeda) {
-        errors.tipoMoeda = "Tipo Moeda é preenchimento obrigatorio";
-      }
-      if (data.usuario.id_usuario) {
-        errors.usuario = "Tipo Moeda é preenchimento obrigatorio";
-      }
-      if (data.valor) {
-        errors.valor = "Valor é preenchimento obrigatorio";
-      }
-      return errors;
+    initialValues: formProvento,  
+      validate: (data) => {
+        let errors = {};
+        if (data.tipoEntrada.id_tipo_entrada) {
+          errors.tipoEntrada = "Tipo Entrada é preenchimento obrigatorio";
+        }
+        if (data.tipoMoeda.id_tipo_moeda) {
+          errors.tipoMoeda = "Tipo Moeda é preenchimento obrigatorio";
+        }
+        if (data.usuario.id_usuario) {
+          errors.usuario = "Tipo Moeda é preenchimento obrigatorio";
+        }
+        if (data.valor) {
+          errors.valor = "Valor é preenchimento obrigatorio";
+        }
+        return errors;
     },
     onSubmit: async (data) => {
-      console.log('aaaaaaaaaaaaaa');
-      // await imprimirAll(date).then((res) => {
-      //     setBase64('data:application/pdf;base64,' + res.dadosRelatorioBase64)
-      //     setActiveImprimir(true)
-      // });
+      console.log('provento');
+      await salvarProvento(data).then((res) => {
+          console.log('entrou aqui provento');
+      });
     },
   });
 
   function onEditarSaida(rowData) {
+    setShowPutSaida(true)
     setFormSaida(rowData)
-    
   }
 
   function onEditarProvento(rowData) {
+    setShowPutProvento(true)
+    setFormProvento(rowData)
   }
 
   function onExcluirProvento(rowData) {
-    
+    excluirProvento(rowData).then((res) => {});
+    setTimeout(() => {
+      buscarAllProvento().then((res) =>{
+        setDataProvento(res.data)
+      })
+    }, 100);
   }
 
   function onExcluirSaida(rowData) {
-    
+    excluirSaida(rowData).then((res) => {});
+    setTimeout(() => {
+      buscarAllSaidas().then((res) =>{
+        setDataSaida(res.data)
+      })
+    }, 100);
+  }
+
+  function onAdicionar() {
+    setFormProvento(initFormProvento)
+    setShowPost(true)
   }
 
   return (
@@ -145,7 +164,7 @@ const Home = () => {
             /> 
           </TabPanel>
         </TabView>
-        <More onClick={() => setShowPost(true)}>
+        <More onClick={onAdicionar}>
           <i className="pi pi-plus" style={{fontSize:'28px', color:'white'}}/>  
         </More>
         <Modaladicionar 
@@ -156,6 +175,18 @@ const Home = () => {
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
         />
+        <Modaleditaprovento
+          formikProvento={formikProvento}
+          showPutProvento={showPutProvento}
+          setShowPutProvento={setShowPutProvento}
+        />
+        <Modaleditarsaida
+          formikSaida={formikSaida}
+          showPutSaida={showPutSaida}
+          setShowPutSaida={setShowPutSaida}
+        />
+
+      
       </Content>
     </Container>
   );

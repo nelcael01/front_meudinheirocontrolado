@@ -12,14 +12,14 @@ import {
   getFormErrorMessage,
 } from "../../config/global";
 
-import { buscarAll as buscarAllSaida } from '../../Service/Saida';
+import { buscarAll as buscarAllProvento } from '../../Service/Provento';
 import { buscarAll as buscarAllCategoriaDespesa } from '../../Service/CategoriaDespesa';
 import { buscarAll as buscarAllUsuario } from '../../Service/Usuario';
 import { buscarAll as buscarAllTipoEntrada } from '../../Service/TipoEntrada';
 import { buscarAll as buscarAllTipoMoeda } from '../../Service/TipoMoeda';
 import { styled } from 'styled-components';
 
-const Modaladicionar = ({showPost, setShowPost, formikProvento, formikSaida, activeIndex, setActiveIndex}) => {
+const Modaladicionar = ({showPost, setShowPost, formikProvento,  activeIndex, setActiveIndex, formikSaida}) => {
 
   const [optionsProvento, setOptionsProvento] = useState();
   const [optionsCategoriaDespesa, setOptionsCategoriaDespesa] = useState();
@@ -28,7 +28,7 @@ const Modaladicionar = ({showPost, setShowPost, formikProvento, formikSaida, act
   const [optionsTipoMoeda, setOptionsTipoMoeda] = useState();
 
   useEffect(() => {
-    buscarAllSaida().then((res)=>{
+    buscarAllProvento().then((res)=>{
       setOptionsProvento(res.data)
     })
     buscarAllCategoriaDespesa().then((res) =>{
@@ -57,16 +57,16 @@ const Modaladicionar = ({showPost, setShowPost, formikProvento, formikSaida, act
       visible={showPost}
       titulo='Criar'
     >
-      <TabView activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}>
+        <TabView activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}>
           <TabPanel header="Provento">
-            <form action="" onSubmit={formikProvento.handleSubmit}>
+            < form onSubmit = {formikProvento.handleSubmit}>
               <Rotulo nome="Valor" cols="12 4" obrigatorio>
                   <InputNumber
                     id="valor"
                     name="valor"
-                    value={formikProvento.valor}
-                    className={classNames({ "p-invalid": isFormFieldValid("saida", formikProvento) })}
+                    value={formikProvento.values.valor}
                     onValueChange={(e) => formikProvento.handleChange(e)}
+                    className={classNames({ "p-invalid": isFormFieldValid("saida", formikProvento) })}
                   />
                   {getFormErrorMessage("saida", formikProvento)}
               </Rotulo>
@@ -109,8 +109,9 @@ const Modaladicionar = ({showPost, setShowPost, formikProvento, formikSaida, act
                 />
                 {getFormErrorMessage("tipoMoeda", formikProvento)}
               </Rotulo>
-            </form>
-          </TabPanel>
+          </form>
+      </TabPanel>
+          
           {/* SAIDA */}
           <TabPanel header="Saida" >
             <form action="" onSubmit={formikSaida.handleSubmit}>
@@ -159,14 +160,11 @@ const Modaladicionar = ({showPost, setShowPost, formikProvento, formikSaida, act
                   placeholder="Selecione..." 
                   className={classNames({ "p-invalid": isFormFieldValid("categoriaDespesa", formikSaida) })} 
                 />
-                {console.log(formikSaida.values)}
                 {getFormErrorMessage("categoriaDespesa", formikSaida)}
               </Rotulo>
-              {console.log('teste')}
-              {console.log(formikProvento.values)}
             </form>
-          </TabPanel>
-          </TabView>
+          </TabPanel> 
+        </TabView>
     </Modal>
   );
 }
