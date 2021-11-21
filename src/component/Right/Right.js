@@ -19,7 +19,12 @@ const Right = () => {
           <InputText value={senha} placeholder="Sua senha" onChange={(e) => setSenha(e.target.values)} style={{width:'100%', backgroundColor:'#EEEEEE'}} />
       </span>
       <Link to="/home" style={{outline:'none'}}> 
-        <Button label="Entrar" className="p-button-success" style={{marginTop:'25px', backgroundColor:'#10B981'}}></Button>
+        <button 
+          className="p-button-success"
+          style={{width:'70px', height:'40px',borderRadius:'5px', fontSize:'16px' ,marginTop:'25px', backgroundColor:'#10B981', outline:'none', color:'white', border:'none'}}
+        >
+          Entrar
+        </button>
       </Link>
       <h4 style={{color:"#10B981", fontFamily:"Segoe UI"}}>Esqueceu a senha?</h4>
     </Container>
