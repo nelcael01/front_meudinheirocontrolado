@@ -91,7 +91,7 @@ const Home = () => {
           errors.tipoMoeda = "Tipo Moeda é preenchimento obrigatorio";
         }
         if (data.usuario.id_usuario) {
-          errors.usuario = "Tipo Moeda é preenchimento obrigatorio";
+          errors.usuario = "Usuario é preenchimento obrigatorio";
         }
         if (data.valor) {
           errors.valor = "Valor é preenchimento obrigatorio";
