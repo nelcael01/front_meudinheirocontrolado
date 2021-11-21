@@ -1,9 +1,7 @@
 import { InputText } from 'primereact/inputtext';
 import {useState} from 'react';
 import { Container } from './Right_styled';
-import { Button } from 'primereact/button';
 import { Link } from "react-router-dom";
-import { Password } from 'primereact/password';
 
 const Right = () => {
   const [senha, setSenha] = useState("");
@@ -23,7 +21,7 @@ const Right = () => {
           className="p-button-success"
           style={{width:'70px', height:'40px',borderRadius:'5px', fontSize:'16px' ,marginTop:'25px', backgroundColor:'#10B981', outline:'none', color:'white', border:'none'}}
         >
-          Entrar
+          <b>Entrar</b>
         </button>
       </Link>
       <h4 style={{color:"#10B981", fontFamily:"Segoe UI"}}>Esqueceu a senha?</h4>

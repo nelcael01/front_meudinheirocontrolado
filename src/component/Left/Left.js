@@ -1,9 +1,7 @@
-import {useState} from 'react';
 import { useFormik } from 'formik';
 import { Container, Title } from './Left_styled';
 import { InputText } from 'primereact/inputtext';
 import { initForm as initFormUsuario, criar as criarUsuario } from '../../Service/Usuario';
-
 
 import { 
   classNames,
@@ -12,11 +10,6 @@ import {
 } from "../../config/global";
 
 const Left = () => {
-  const [nome, setNome] = useState("");
-  const [telefone, setTelefone] = useState("");
-  const [endereco, setEndereco] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [senha, setSenha] = useState("");
 
   // FORMIK SAIDA
   const formikUsuario = useFormik({
