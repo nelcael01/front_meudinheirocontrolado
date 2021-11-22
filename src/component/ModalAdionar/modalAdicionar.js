@@ -48,10 +48,9 @@ const Modaladicionar = ({showPost, setShowPost, formikProvento,  activeIndex, se
   function handleHide() {
     setShowPost(false)
   }
-  
+
   return (
     <Modal
-      type="SUBMIT"
       tamanho="850px"
       fechar={handleHide}
       visible={showPost}
@@ -109,8 +108,12 @@ const Modaladicionar = ({showPost, setShowPost, formikProvento,  activeIndex, se
                 />
                 {getFormErrorMessage("tipoMoeda", formikProvento)}
               </Rotulo>
+              <button
+                type='submit'
+                style={{border:'none', backgroundColor:'green', color: 'white', width: '90px', height:'40px', fontSize:'22px', borderRadius:'5px', marginTop:'15px'}}
+              >Criar</button>
           </form>
-      </TabPanel>
+        </TabPanel>
           
           {/* SAIDA */}
           <TabPanel header="Saida" >
@@ -137,10 +140,10 @@ const Modaladicionar = ({showPost, setShowPost, formikProvento,  activeIndex, se
               </Rotulo>
               <Rotulo nome="Provento" obrigatorio cols="12 4">
                 <Dropdown 
-                  id="provento"
+                  id="id_provento"
                   name="provento"
                   optionLabel="valor"
-                  optionValue='provento'
+                  // optionValue='provento'
                   options={optionsProvento}
                   value={formikSaida.values.provento}
                   onChange={(e) => formikSaida.handleChange(e)}
@@ -162,6 +165,12 @@ const Modaladicionar = ({showPost, setShowPost, formikProvento,  activeIndex, se
                 />
                 {getFormErrorMessage("categoriaDespesa", formikSaida)}
               </Rotulo>
+              <div >
+                <button
+                  type='submit'
+                  style={{border:'none', backgroundColor:'green', color: 'white', width: '90px', height:'40px', fontSize:'22px', borderRadius:'5px', marginTop:'15px'}}
+                >Criar</button>
+              </div>
             </form>
           </TabPanel> 
         </TabView>

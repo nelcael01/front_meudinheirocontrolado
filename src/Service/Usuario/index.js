@@ -19,7 +19,6 @@ export const  initForm = {
 
 export const criar = async (data) => {
     return new Promise((resolve, reject) => {
-      api.post("url", JSON.stringify(data)).then(res =>{
-      })  
+        window.$http.post(`${url}`, JSON.stringify(data)).then()      
     })
-  }
+}

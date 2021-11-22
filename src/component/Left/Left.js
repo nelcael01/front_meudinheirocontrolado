@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import { useFormik } from 'formik';
 import { Container, Title } from './Left_styled';
 import { InputText } from 'primereact/inputtext';
@@ -9,34 +10,37 @@ import {
   getFormErrorMessage,
 } from "../../config/global";
 
+
 const Left = () => {
+
+  const [estadoInicial, setEstadoInicial] = useState(initFormUsuario);
 
   // FORMIK SAIDA
   const formikUsuario = useFormik({
     enableReinitialize: true,
-    initialValues: initFormUsuario,
+    initialValues: estadoInicial,
     validate: (data) => {
       let errors = {};
       if (!data.nome) {
         errors.nome = "Nome é preenchimento obrigatorio";
       }
       if (!data.senha) {
-        errors.nome = "Senha é preenchimento obrigatorio";
+        errors.senha = "Senha é preenchimento obrigatorio";
       }
       if (!data.endereco) {
-        errors.nome = "Endereço é preenchimento obrigatorio";
+        errors.endereco= "Endereço é preenchimento obrigatorio";
       }
       if (!data.cpf) {
-        errors.nome = "CPF é preenchimento obrigatorio";
+        errors.cpf = "CPF é preenchimento obrigatorio";
       }
       if (!data.telefone) {
-        errors.nome = "Telefone é preenchimento obrigatorio";
+        errors.telefone = "Telefone é preenchimento obrigatorio";
       }
       return errors;
     },
     onSubmit: async (data) => {
-      await criarUsuario(data).then((res) => {
-        console.log('Criou usuario');
+      await criarUsuario(data).then(res => {
+          formikUsuario.resetForm()
       });
     },
   });
@@ -110,18 +114,17 @@ const Left = () => {
               style={{width:'100%'}}
               className={classNames({ "p-invalid": isFormFieldValid("senha", formikUsuario) })}
             />
-            {getFormErrorMessage("senhaf", formikUsuario)}
+            {getFormErrorMessage("senha", formikUsuario)}
+        </span>
+        <span className="p-input-icon-left" style={{marginTop:'20px', width:'70%'}} >
+            <button 
+              type="submit"
+              style={{color:"white", fontFamily:"Segoe UI", fontSize:'24px', backgroundColor:"#10B981", border:'none'}}
+            >
+              Criar conta
+            </button>
         </span>
       </form>  
-      {console.log(formikUsuario.values)}
-      <span className="p-input-icon-left" style={{marginTop:'20px', width:'70%'}}>
-        <button 
-          type="submit"
-          style={{color:"white", fontFamily:"Segoe UI", fontSize:'24px', backgroundColor:"#10B981", border:'none'}}
-        >
-          Criar conta
-        </button>
-      </span>
     </Container>
   );
 }

@@ -41,6 +41,8 @@ const Home = () => {
 
   useEffect(() => {
     buscarAllSaidas().then((res) => {
+      console.log('saida');
+      console.log(res.data);
       setDataSaida(res.data)
     })
     buscarAllProvento().then((res)=>{
@@ -57,11 +59,11 @@ const Home = () => {
       if (!data.categoriaDespesa.id_categoria_despesa) {
         errors.categoriaDespesa = "Categoria despesa é preenchimento obrigatorio";
       }
+      // if (!data.provento.id_provento) {
+      //   errors. = "Provento é preenchimento obrigatorio";
+      // }
       if (!data.descricao) {
         errors.descricao = "Descrição é preenchimento obrigatorio";
-      }
-      if (!data.provento.id_provento) {
-        errors.provento = "Provento é preenchimento obrigatorio";
       }
       if (!data.valor) {
         errors.valor = "Valor é preenchimento obrigatorio";
@@ -70,11 +72,7 @@ const Home = () => {
       return errors;
     },
     onSubmit: async (data) => {
-      console.log('saida');
-      await salvarSaida(data).then((res) => {
-        console.log('saida');
-        console.log('entrou aqui saida');
-      });
+      await salvarSaida(data).then();
     },
   });
 
@@ -84,24 +82,25 @@ const Home = () => {
     initialValues: formProvento,  
       validate: (data) => {
         let errors = {};
-        if (data.tipoEntrada.id_tipo_entrada) {
+        if (!data.tipoEntrada.id_tipo_entrada) {
           errors.tipoEntrada = "Tipo Entrada é preenchimento obrigatorio";
         }
-        if (data.tipoMoeda.id_tipo_moeda) {
+        if (!data.tipoMoeda.id_tipo_moeda) {
           errors.tipoMoeda = "Tipo Moeda é preenchimento obrigatorio";
         }
-        if (data.usuario.id_usuario) {
+        if (!data.usuario.id_usuario) {
           errors.usuario = "Usuario é preenchimento obrigatorio";
         }
-        if (data.valor) {
+        if (!data.valor) {
           errors.valor = "Valor é preenchimento obrigatorio";
         }
         return errors;
     },
     onSubmit: async (data) => {
-      console.log('provento');
       await salvarProvento(data).then((res) => {
-          console.log('entrou aqui provento');
+        buscarAllProvento().then((res)=>{
+          setDataProvento(res.data)
+        })
       });
     },
   });
@@ -122,7 +121,7 @@ const Home = () => {
       buscarAllProvento().then((res) =>{
         setDataProvento(res.data)
       })
-    }, 100);
+    }, 200);
   }
 
   function onExcluirSaida(rowData) {
@@ -131,7 +130,7 @@ const Home = () => {
       buscarAllSaidas().then((res) =>{
         setDataSaida(res.data)
       })
-    }, 100);
+    }, 200);
   }
 
   function onAdicionar() {
@@ -185,8 +184,6 @@ const Home = () => {
           showPutSaida={showPutSaida}
           setShowPutSaida={setShowPutSaida}
         />
-
-      
       </Content>
     </Container>
   );

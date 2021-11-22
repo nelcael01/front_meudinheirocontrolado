@@ -24,26 +24,26 @@ const url = 'http://localhost:3000/saidas'
 
 export const buscarAll = async () => {
     return new Promise((resolve, reject) => {
-        resolve(axios.get(url))
+        resolve(window.$http.get(url))
     })
 }
 
 export const criar = async (data) => {
   return new Promise((resolve, reject) => {
-    api.post("url", JSON.stringify(data)).then()
+    window.$http.post(`${url}`, JSON.stringify(data)).then()
   })
 }
 
 
 export const excluir = async (data) => {
   return new Promise((resolve, reject) => {
-    api.delete(`${url}/${data[id]}`).then()
+    window.$http.delete(`${url}/${data[id]}`).then()
   })
 }
 
 export const atualizar = async (data) => {
   return new Promise((resolve, reject) => {
-    api.put(`${url}/${data[id]}`).then()
+    window.$http.put(`${url}/${data[id]}`).then()
   })
 }
 

@@ -4,14 +4,19 @@ import "./modalstyle.css";
 
 const Modal = (props) => {
   const footer = () => {
-    if(props.type === "SUBMIT"){
-      return(
-        <div className="modal-botoes-footer">
-            <Button type='submit' label={props.edit ? "Editar" : "Enviar"} icon={props.edit ? "pi pi-pencil" : "pi pi-check"}  autoFocus className={props.edit ? "p-button-warning" : "p-button-raised"}  />
-            <Button type='button' label="Cancelar" icon="pi pi-times" onClick={() => props.fechar()} className="p-button-raised p-button-danger" />
-        </div>
-      )
-    }     
+    // if(props.type === "SUBMIT"){
+    //   return(
+    //     <div className="modal-botoes-footer">
+    //         <Button type='submit' label={props.edit ? "Editar" : "Enviar"} icon={props.edit ? "pi pi-pencil" : "pi pi-check"}  autoFocus className={props.edit ? "p-button-warning" : "p-button-raised"}  />    //         <Button type='button' label="Cancelar" icon="pi pi-times" onClick={() => props.fechar()} className="p-button-raised p-button-danger" />
+    //     </div>
+    //   )
+    // } else if(props.type === "CLOSE"){
+    //   return(
+    //     <div className="modal-botoes-footer">
+    //         <Button type='button' label="Cancelar" icon="pi pi-times" onClick={() => props.fechar()} className="p-button-raised p-button-danger" />
+    //     </div>
+    //   )
+    // }   
   };
 
   return (
