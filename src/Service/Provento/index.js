@@ -43,7 +43,9 @@ export const excluir = async (data) => {
 
 export const atualizar = async (data) => {
   return new Promise((resolve, reject) => {
-    window.$http.put(`${url}/${data[id]}`).then();
+    console.log('para atualizar');
+    console.log(data[id]);
+    window.$http.put(`${url}/${data[id]}`, JSON.stringify(data)).then();
   });
 };
 

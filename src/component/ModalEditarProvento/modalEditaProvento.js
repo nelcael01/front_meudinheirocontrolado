@@ -38,7 +38,6 @@ const Modaleditaprovento = ({formikProvento,showPutProvento , setShowPutProvento
 
   return (
     <Modal
-      type="SUBMIT"
       tamanho="850px"
       fechar={handleHide}
       visible={showPutProvento}
@@ -94,6 +93,12 @@ const Modaleditaprovento = ({formikProvento,showPutProvento , setShowPutProvento
             />
             {getFormErrorMessage("tipoMoeda", formikProvento)}
           </Rotulo>
+          <button
+            type='submit'
+            style={{border:'none', backgroundColor:'green', color: 'white', width: '100px', height:'40px', fontSize:'22px', borderRadius:'5px', marginTop:'15px'}}
+          >
+            Atualizar
+          </button>
       </form>
     </Modal>
   );

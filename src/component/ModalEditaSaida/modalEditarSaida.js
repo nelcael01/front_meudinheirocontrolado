@@ -14,6 +14,7 @@ import { buscarAll as buscarAllCategoriaDespesa } from '../../Service/CategoriaD
 import { buscarAll as buscarAllProvento } from '../../Service/Provento';
 
 const Modaleditarsaida = ({formikSaida, setShowPutSaida, showPutSaida}) => {
+
   const [optionsSaidaProvento, setOptionsSaidaProvento] = useState();
   const [optionsSaidaCategoriaDespesa, setOptionsSaidaCategoriaDespesa] = useState();
 
@@ -34,7 +35,6 @@ const Modaleditarsaida = ({formikSaida, setShowPutSaida, showPutSaida}) => {
 
   return (
     <Modal
-    type="SUBMIT"
     tamanho="850px"
     fechar={handleHide}
     visible={showPutSaida}
@@ -45,7 +45,7 @@ const Modaleditarsaida = ({formikSaida, setShowPutSaida, showPutSaida}) => {
           <InputText 
           id="descricao"
           name="descricao"
-          value={formikSaida.descricao}
+          value={formikSaida.values.descricao}
           className={classNames({ "p-invalid": isFormFieldValid("descricao", formikSaida) })}
           onChange={(e) => formikSaida.handleChange(e)}
           />
@@ -55,7 +55,7 @@ const Modaleditarsaida = ({formikSaida, setShowPutSaida, showPutSaida}) => {
           <InputNumber
             id="valor"
             name="valor"
-            value={formikSaida.valor}
+            value={formikSaida.values.valor}
             className={classNames({ "p-invalid": isFormFieldValid("saida", formikSaida) })}
             onValueChange={(e) => formikSaida.handleChange(e)}
           />
@@ -66,7 +66,6 @@ const Modaleditarsaida = ({formikSaida, setShowPutSaida, showPutSaida}) => {
             id="provento"
             name="provento"
             optionLabel="valor"
-            optionValue='provento'
             options={optionsSaidaProvento}
             value={formikSaida.values.provento}
             onChange={(e) => formikSaida.handleChange(e)}
@@ -88,6 +87,12 @@ const Modaleditarsaida = ({formikSaida, setShowPutSaida, showPutSaida}) => {
           />
           {getFormErrorMessage("categoriaDespesa", formikSaida)}
         </Rotulo>
+        <button
+          type='submit'
+          style={{border:'none', backgroundColor:'green', color: 'white', width: '100px', height:'40px', fontSize:'22px', borderRadius:'5px', marginTop:'15px'}}
+        >
+          Atualizar
+        </button>
       </form>
   </Modal>
   );

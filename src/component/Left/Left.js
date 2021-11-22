@@ -118,6 +118,7 @@ const Left = () => {
         </span>
         <span className="p-input-icon-left" style={{marginTop:'20px', width:'70%'}} >
             <button 
+              
               type="submit"
               style={{color:"white", fontFamily:"Segoe UI", fontSize:'24px', backgroundColor:"#10B981", border:'none'}}
             >

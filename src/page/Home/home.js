@@ -41,8 +41,6 @@ const Home = () => {
 
   useEffect(() => {
     buscarAllSaidas().then((res) => {
-      console.log('saida');
-      console.log(res.data);
       setDataSaida(res.data)
     })
     buscarAllProvento().then((res)=>{
@@ -81,7 +79,7 @@ const Home = () => {
     enableReinitialize: true,
     initialValues: formProvento,  
       validate: (data) => {
-        let errors = {};
+      let errors = {};
         if (!data.tipoEntrada.id_tipo_entrada) {
           errors.tipoEntrada = "Tipo Entrada é preenchimento obrigatorio";
         }
@@ -135,6 +133,7 @@ const Home = () => {
 
   function onAdicionar() {
     setFormProvento(initFormProvento)
+    setFormSaida(initFormSaida)
     setShowPost(true)
   }
 
