@@ -30,20 +30,26 @@ export const buscarAll = async () => {
 
 export const criar = async (data) => {
   return new Promise((resolve, reject) => {
-    window.$http.post(`${url}`, JSON.stringify(data)).then()
+    window.$http.post(`${url}`, JSON.stringify(data)).then((res) =>{
+      resolve(res)
+    })
   })
 }
 
 
 export const excluir = async (data) => {
   return new Promise((resolve, reject) => {
+    console.log('chegou aqui');
+    console.log(data);
     window.$http.delete(`${url}/${data[id]}`).then()
   })
 }
 
 export const atualizar = async (data) => {
   return new Promise((resolve, reject) => {
-    window.$http.put(`${url}/${data[id]}`, JSON.stringify(data)).then()
+    window.$http.put(`${url}/${data[id]}`, JSON.stringify(data)).then((res) =>{
+      resolve(res)
+    })
   })
 }
 

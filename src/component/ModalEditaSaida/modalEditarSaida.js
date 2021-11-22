@@ -25,7 +25,7 @@ const Modaleditarsaida = ({formikSaida, setShowPutSaida, showPutSaida}) => {
     buscarAllProvento().then((res) =>{
       setOptionsSaidaProvento(res.data)
     })
-  }, []);
+  }, [showPutSaida]);
 
   
   function handleHide() {

@@ -31,7 +31,9 @@ export const criar = async (data) => {
   return new Promise((resolve, reject) => {
     console.log("dados para ser salvo");
     console.log(data);
-    window.$http.post(`${url}`, JSON.stringify(data)).then();
+    window.$http.post(`${url}`, JSON.stringify(data)).then((res)=>{
+      resolve(res)
+    });
   });
 };
 
@@ -43,9 +45,9 @@ export const excluir = async (data) => {
 
 export const atualizar = async (data) => {
   return new Promise((resolve, reject) => {
-    console.log('para atualizar');
-    console.log(data[id]);
-    window.$http.put(`${url}/${data[id]}`, JSON.stringify(data)).then();
+    window.$http.put(`${url}/${data[id]}`, JSON.stringify(data)).then((res)=>{
+      resolve(res)
+    });
   });
 };
 

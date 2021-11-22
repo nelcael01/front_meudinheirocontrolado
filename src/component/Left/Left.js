@@ -40,6 +40,7 @@ const Left = () => {
     },
     onSubmit: async (data) => {
       await criarUsuario(data).then(res => {
+          setEstadoInicial(initFormUsuario)
           formikUsuario.resetForm()
       });
     },
@@ -50,7 +51,7 @@ const Left = () => {
       <Title>
         Bem vindo ao <br/><b>Meu Dinheiro Controlado</b>
       </Title>
-      < form onSubmit = {formikUsuario.handleSubmit}>
+      < form onSubmit = {formikUsuario.handleSubmit} >
         <span className="p-input-icon-left" style={{marginTop:'70px' , width:'70%'}}>
             <i className="pi pi-user" />
             <InputText

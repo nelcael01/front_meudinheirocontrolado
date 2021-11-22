@@ -70,7 +70,13 @@ const Home = () => {
       return errors;
     },
     onSubmit: async (data) => {
-      await salvarSaida(data).then();
+      await salvarSaida(data).then((res)=>{
+        buscarAllSaidas().then((res) => {
+          setDataSaida(res.data)
+          setShowPutSaida(false)
+          setShowPost(false)
+        })
+      });
     },
   });
 
@@ -98,7 +104,10 @@ const Home = () => {
       await salvarProvento(data).then((res) => {
         buscarAllProvento().then((res)=>{
           setDataProvento(res.data)
+          setShowPutProvento(false)
+          setShowPost(false)
         })
+
       });
     },
   });
@@ -119,7 +128,7 @@ const Home = () => {
       buscarAllProvento().then((res) =>{
         setDataProvento(res.data)
       })
-    }, 200);
+    }, 250);
   }
 
   function onExcluirSaida(rowData) {
@@ -128,7 +137,7 @@ const Home = () => {
       buscarAllSaidas().then((res) =>{
         setDataSaida(res.data)
       })
-    }, 200);
+    }, 250);
   }
 
   function onAdicionar() {
