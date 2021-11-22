@@ -8,10 +8,17 @@ export const Container = styled.div`
 export const Content = styled.div`
   width: 95vw;
   padding: 25px;
+  margin-left: 15vw;
+  margin-bottom: 5vw;
+  margin-right: 15vw;
+  height: 50%;
+  height: auto;
+  overflow: visible;
 `;
 
 export const More = styled.div`
-  position: absolute;
+  position: fixed;
+  
   border-radius: 15px;
   right: 25px;
   bottom: 25px;

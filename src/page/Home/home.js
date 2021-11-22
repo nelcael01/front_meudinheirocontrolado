@@ -128,7 +128,7 @@ const Home = () => {
       buscarAllProvento().then((res) =>{
         setDataProvento(res.data)
       })
-    }, 250);
+    }, 400);
   }
 
   function onExcluirSaida(rowData) {
@@ -137,7 +137,7 @@ const Home = () => {
       buscarAllSaidas().then((res) =>{
         setDataSaida(res.data)
       })
-    }, 250);
+    }, 400);
   }
 
   function onAdicionar() {
