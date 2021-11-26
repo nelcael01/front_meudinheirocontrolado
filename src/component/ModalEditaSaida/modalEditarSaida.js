@@ -35,6 +35,7 @@ const Modaleditarsaida = ({formikSaida, setShowPutSaida, showPutSaida}) => {
 
   return (
     <Modal
+    
     tamanho="850px"
     fechar={handleHide}
     visible={showPutSaida}
