@@ -128,7 +128,7 @@ const Home = () => {
       buscarAllProvento().then((res) =>{
         setDataProvento(res.data)
       })
-    }, 400);
+    }, 600);
   }
 
   function onExcluirSaida(rowData) {
@@ -137,10 +137,11 @@ const Home = () => {
       buscarAllSaidas().then((res) =>{
         setDataSaida(res.data)
       })
-    }, 400);
+    }, 600);
   }
 
   function onAdicionar() {
+    console.log('adicionar');
     setFormProvento(initFormProvento)
     setFormSaida(initFormSaida)
     setShowPost(true)
@@ -181,6 +182,8 @@ const Home = () => {
           setShowPost={setShowPost}
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
+          dataProvento={dataProvento}
+          dataSaida={dataSaida}
         />
         <Modaleditaprovento
           formikProvento={formikProvento}

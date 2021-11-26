@@ -19,7 +19,7 @@ import { buscarAll as buscarAllTipoEntrada } from '../../Service/TipoEntrada';
 import { buscarAll as buscarAllTipoMoeda } from '../../Service/TipoMoeda';
 import { styled } from 'styled-components';
 
-const Modaladicionar = ({showPost, setShowPost, formikProvento,  activeIndex, setActiveIndex, formikSaida}) => {
+const Modaladicionar = ({showPost, setShowPost, formikProvento,  activeIndex, setActiveIndex, formikSaida, dataSaida, dataProvento}) => {
 
   const [optionsProvento, setOptionsProvento] = useState();
   const [optionsCategoriaDespesa, setOptionsCategoriaDespesa] = useState();
@@ -43,10 +43,12 @@ const Modaladicionar = ({showPost, setShowPost, formikProvento,  activeIndex, se
     buscarAllTipoMoeda().then((res) =>{
       setOptionsTipoMoeda(res.data)
     })
-  }, []);
+  }, [dataSaida, dataProvento]);
 
   function handleHide() {
     setShowPost(false)
+    formikSaida.resetForm();
+    formikProvento.resetForm();
   }
 
   return (
