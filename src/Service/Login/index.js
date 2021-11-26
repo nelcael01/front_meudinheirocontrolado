@@ -1,5 +1,5 @@
 import axios from 'axios'
-const url = 'http://localhost:3000/usuarios'
+const url = 'http://localhost:3000/usuarios/buscaLogin'
 const api = require('axios');
 
 export const buscarAll = async () => {
@@ -9,15 +9,11 @@ export const buscarAll = async () => {
 }
 
 export const  initForm = {
-    id_usuario: null,
     nome: "",
     senha: "",
-    cpf: "",
-    telefone: "",
-    endereco: ""
 }
 
-export const criar = async (data) => {
+export const buscaLogin = async (data) => {
     return new Promise((resolve, reject) => {
         window.$http.post(`${url}`, JSON.stringify(data)).then((res)=>{
             resolve()
@@ -25,3 +21,9 @@ export const criar = async (data) => {
     })
 }
 
+// export const buscarAll = async () => {
+//     return new Promise((resolve, reject) => {
+//       resolve(window.$http.get(url));
+//     });
+// };
+  
