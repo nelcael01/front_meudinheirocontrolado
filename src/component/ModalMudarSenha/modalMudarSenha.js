@@ -16,7 +16,7 @@ const ModalMudarSenha = ({setActiveMudarSenha, activeMudarSenha, formikMudarSenh
       titulo='Atualizar Senha'
     >
       <form form onSubmit = {formikMudarSenha.handleSubmit}>
-        <Rotulo nome="Nome" cols="12 4" obrigatorio>
+        <Rotulo nome="Usuário" cols="12 4" obrigatorio>
           <InputText 
           id="nome"
           name="nome"
@@ -36,12 +36,26 @@ const ModalMudarSenha = ({setActiveMudarSenha, activeMudarSenha, formikMudarSenh
           />
           {getFormErrorMessage("senha", formikMudarSenha)}
         </Rotulo>
-        <button
-          type='submit'
-          style={{border:'none', backgroundColor:'green', color: 'white', width: '130px', height:'40px', fontSize:'22px', borderRadius:'5px', marginTop:'15px'}}
-        >
-          Atualizar
-        </button>
+        <div >
+          <button
+            type='submit'
+            style={{
+              border:'none', 
+              backgroundColor:'#10B981', 
+              display: 'flex',
+              alignItems:'center',
+              justifyContent:'center',
+              color: 'white', 
+              fontSize:'22px', 
+              borderRadius:'5px', 
+              marginTop:'30px', 
+              paddingTop:'8px',
+              paddingBottom:'8px',
+              paddingLeft:'25px',
+              paddingRight:'25px'
+            }}
+          >Atualizar</button>
+        </div>
       </form>
       <div 
         style={{marginTop:'20px', fontSize:'22px', borderRadius:'15px', display:'flex',  color: resultado == 'Atualizado!' ? '#10B981' : "red" , alignItems:'center', justifyContent:'center', fontWeight:'bold'}}

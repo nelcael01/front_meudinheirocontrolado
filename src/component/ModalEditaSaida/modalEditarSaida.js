@@ -88,12 +88,26 @@ const Modaleditarsaida = ({formikSaida, setShowPutSaida, showPutSaida}) => {
           />
           {getFormErrorMessage("categoriaDespesa", formikSaida)}
         </Rotulo>
-        <button
-          type='submit'
-          style={{border:'none', backgroundColor:'green', color: 'white', width: '100px', height:'40px', fontSize:'22px', borderRadius:'5px', marginTop:'15px'}}
-        >
-          Atualizar
-        </button>
+        <div >
+          <button
+            type='submit'
+            style={{
+              border:'none', 
+              backgroundColor:'#10B981', 
+              display: 'flex',
+              alignItems:'center',
+              justifyContent:'center',
+              color: 'white', 
+              fontSize:'22px', 
+              borderRadius:'5px', 
+              marginTop:'30px', 
+              paddingTop:'8px',
+              paddingBottom:'8px',
+              paddingLeft:'25px',
+              paddingRight:'25px'
+            }}
+          >Atualizar</button>
+        </div>
       </form>
   </Modal>
   );
