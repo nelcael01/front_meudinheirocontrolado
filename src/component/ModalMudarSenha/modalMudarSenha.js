@@ -26,7 +26,7 @@ const ModalMudarSenha = ({setActiveMudarSenha, activeMudarSenha, formikMudarSenh
           />
           {getFormErrorMessage("nome", formikMudarSenha)}
         </Rotulo> 
-        <Rotulo nome="Senha" cols="12 4" obrigatorio>
+        <Rotulo nome="Nova senha" cols="12 4" obrigatorio>
           <InputText 
           id="senha"
           name="senha"
