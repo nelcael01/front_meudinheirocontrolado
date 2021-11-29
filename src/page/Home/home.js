@@ -39,6 +39,9 @@ const Home = () => {
   // index ativo no modal adicionar
   const [activeIndex, setActiveIndex] = useState();
 
+  // estado do valor de saldo
+  const [result, setResult] = useState(0);
+
   useEffect(() => {
     buscarAllSaidas().then((res) => {
       setDataSaida(res.data)
@@ -47,6 +50,19 @@ const Home = () => {
       setDataProvento(res.data)
     })
   }, []);
+
+  useEffect(() => {
+    if (dataSaida !== undefined && dataProvento !== undefined) {
+      dataProvento.map((key, item) => {
+        console.log(dataProvento[item].valor);
+        // setResult(dataProvento[item].valor + result)
+      })
+      // dataSaida.map((key, item) => {
+      //   console.log(dataSaida[item].valor + result);
+      //   setResult( result  - dataSaida[item].valor)
+      // })
+    }
+  },[dataProvento, dataSaida])
 
   // FORMIK SAIDA
   const formikSaida = useFormik({
@@ -151,7 +167,10 @@ const Home = () => {
     <Container>
       <Menu /> 
       <Content>
-        <h1 style={{marginTop:'0', marginBottom:'40px', color:'#10B981'}}>Home</h1>
+        <div style={{display:'flex', justifyContent: 'space-between'}}> 
+          <h1 style={{marginTop:'0', marginBottom:'40px', color:'#10B981'}}>Home</h1>
+          <h1 style={{marginTop:'0', marginBottom:'40px', color:'#10B981'}}>Saldo: {result}</h1>
+        </div>
         <TabView >
           <TabPanel header="Provento" >
             <Tabela 

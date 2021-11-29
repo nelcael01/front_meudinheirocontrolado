@@ -121,7 +121,7 @@ const Left = () => {
             <button 
               
               type="submit"
-              style={{color:"white", fontFamily:"Segoe UI", fontSize:'24px', backgroundColor:"#10B981", border:'none'}}
+              style={{color:"white", fontFamily:"Segoe UI", fontSize:'24px', backgroundColor:"#10B981", border:'none', outline:'none' }}
             >
               Criar conta
             </button>
