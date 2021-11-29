@@ -150,6 +150,9 @@ const Modaladicionar = ({showPost, setShowPost, formikProvento,  activeIndex, se
                 <InputNumber
                   id="valor"
                   name="valor"
+                  mode="decimal"
+                  minFractionDigits={2}
+                  maxFracionDigits={2}
                   value={formikSaida.valor}
                   className={classNames({ "p-invalid": isFormFieldValid("saida", formikSaida) })}
                   onValueChange={(e) => formikSaida.handleChange(e)}

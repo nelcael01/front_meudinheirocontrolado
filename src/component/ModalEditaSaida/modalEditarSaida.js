@@ -56,6 +56,9 @@ const Modaleditarsaida = ({formikSaida, setShowPutSaida, showPutSaida}) => {
           <InputNumber
             id="valor"
             name="valor"
+            mode="decimal"
+            minFractionDigits={2}
+            maxFracionDigits={2}
             value={formikSaida.values.valor}
             className={classNames({ "p-invalid": isFormFieldValid("saida", formikSaida) })}
             onValueChange={(e) => formikSaida.handleChange(e)}
