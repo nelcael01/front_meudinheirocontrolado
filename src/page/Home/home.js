@@ -20,6 +20,7 @@ import Tabela from '../../component/Tabela/tabela.js'
 import Modaladicionar from './../../component/ModalAdionar/modalAdicionar';
 import Modaleditaprovento from '../../component/ModalEditarProvento/modalEditaProvento';
 import Modaleditarsaida from '../../component/ModalEditaSaida/modalEditarSaida';
+import ModalErrorIntegridadeBanco from "../../component/ModalErrorIntegridadeBanco/modalErrorIntegridadeBanco"
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -45,7 +46,10 @@ const Home = ({}) => {
   // estado do valor de saldo
   const [result, setResult] = useState(0);
 
+  // redux
   const dadosCloud = useSelector((state) => state.stock)
+
+  const [errorIntegridadeBanco, setErrorIntegridadeBanco] = useState(false);
   
   useEffect(() => {
     buscarAllSaidas(dadosCloud.id_logado).then((res) => {
@@ -93,7 +97,7 @@ const Home = ({}) => {
     },
     onSubmit: async (data) => {
       await salvarSaida(data).then((res)=>{
-        buscarAllSaidas().then((res) => {
+        buscarAllSaidas(dadosCloud.id_logado).then((res) => {
           setDataSaida(res.data)
           setShowPutSaida(false)
           setShowPost(false)
@@ -124,7 +128,7 @@ const Home = ({}) => {
     },
     onSubmit: async (data) => {
       await salvarProvento(data).then((res) => {
-        buscarAllProvento().then((res)=>{
+        buscarAllProvento(dadosCloud.id_logado).then((res)=>{
           setDataProvento(res.data)
           setShowPutProvento(false)
           setShowPost(false)
@@ -144,9 +148,13 @@ const Home = ({}) => {
   }
 
   function onExcluirProvento(rowData) {
-    excluirProvento(rowData).then((res) => {});
+    excluirProvento(rowData).then((res) => {
+      if (res.data == 1) {
+        setErrorIntegridadeBanco(true)  
+      }
+    });
     setTimeout(() => {
-      buscarAllProvento().then((res) =>{
+      buscarAllProvento(dadosCloud.id_logado).then((res) =>{
         setDataProvento(res.data)
       })
     }, 600);
@@ -155,7 +163,7 @@ const Home = ({}) => {
   function onExcluirSaida(rowData) {
     excluirSaida(rowData).then((res) => {});
     setTimeout(() => {
-      buscarAllSaidas().then((res) =>{
+      buscarAllSaidas(dadosCloud.id_logado).then((res) =>{
         setDataSaida(res.data)
       })
     }, 600);
@@ -234,6 +242,12 @@ const Home = ({}) => {
           showPutSaida={showPutSaida}
           setShowPutSaida={setShowPutSaida}
         />
+        <ModalErrorIntegridadeBanco
+          errorIntegridadeBanco={errorIntegridadeBanco}
+          setErrorIntegridadeBanco={setErrorIntegridadeBanco}
+        />
+
+        
       </Content>
     </Container>
   );

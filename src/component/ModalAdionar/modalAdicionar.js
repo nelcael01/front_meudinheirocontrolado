@@ -21,6 +21,9 @@ import { styled } from 'styled-components';
 import { initFormProvento } from '../../Service/Provento';
 import { initFormSaida } from '../../Service/Saida';
 
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+
 const Modaladicionar = ({
   showPost,
   setShowPost, 
@@ -38,8 +41,10 @@ const Modaladicionar = ({
   const [optionsTipoEntrada, setOptionsTipoEntrada] = useState();
   const [optionsTipoMoeda, setOptionsTipoMoeda] = useState();
 
+  const dadosCloud = useSelector((state) => state.stock)
+
   useEffect(() => {
-    buscarAllProvento().then((res)=>{
+    buscarAllProvento(dadosCloud.id_logado).then((res)=>{
       setOptionsProvento(res.data)
     })
     buscarAllCategoriaDespesa().then((res) =>{
@@ -79,22 +84,9 @@ const Modaladicionar = ({
                     maxFracionDigits={2}
                     value={formikProvento.values.valor}
                     onValueChange={(e) => formikProvento.handleChange(e)}
-                    className={classNames({ "p-invalid": isFormFieldValid("saida", formikProvento) })}
+                    className={classNames({ "p-invalid": isFormFieldValid("valor", formikProvento) })}
                   />
-                  {getFormErrorMessage("saida", formikProvento)}
-              </Rotulo>
-              <Rotulo nome="Usuario" obrigatorio cols="12 4" >
-                <Dropdown 
-                  id="id_usuario"
-                  name="usuario"
-                  optionLabel="nome"
-                  options={optionsUsuario}
-                  value={formikProvento.values.usuario}
-                  onChange={(e) => formikProvento.handleChange(e)}
-                  placeholder="Selecione..." 
-                  className={classNames({ "p-invalid": isFormFieldValid("usuario", formikProvento) })} 
-                />
-                {getFormErrorMessage("usuario", formikProvento)}
+                  {getFormErrorMessage("valor", formikProvento)}
               </Rotulo>
               <Rotulo nome="Tipo Entrada" obrigatorio cols="12 4" >
                 <Dropdown 
@@ -122,6 +114,19 @@ const Modaladicionar = ({
                 />
                 {getFormErrorMessage("tipoMoeda", formikProvento)}
               </Rotulo>
+              <Rotulo nome="Usuario" obrigatorio cols="12 4" >
+                <Dropdown 
+                  id="id_usuario"
+                  name="usuario"
+                  optionLabel="nome"
+                  options={optionsUsuario}
+                  value={formikProvento.values.usuario}
+                  onChange={(e) => formikProvento.handleChange(e)}
+                  placeholder="Selecione..." 
+                  className={classNames({ "p-invalid": isFormFieldValid("usuario", formikProvento) })} 
+                />
+                {getFormErrorMessage("usuario", formikProvento)}
+              </Rotulo>
               <div >
                 <button
                   type='submit'
@@ -138,7 +143,8 @@ const Modaladicionar = ({
                     paddingTop:'8px',
                     paddingBottom:'8px',
                     paddingLeft:'25px',
-                    paddingRight:'25px'
+                    paddingRight:'25px',
+                    outline:'none'
                   }}
                 >Criar</button>
               </div>
@@ -166,10 +172,10 @@ const Modaladicionar = ({
                   minFractionDigits={2}
                   maxFracionDigits={2}
                   value={formikSaida.valor}
-                  className={classNames({ "p-invalid": isFormFieldValid("saida", formikSaida) })}
+                  className={classNames({ "p-invalid": isFormFieldValid("valor", formikSaida) })}
                   onValueChange={(e) => formikSaida.handleChange(e)}
                 />
-                {getFormErrorMessage("saida", formikSaida)}
+                {getFormErrorMessage("valor", formikSaida)}
               </Rotulo>
               <Rotulo nome="Provento" obrigatorio cols="12 4">
                 <Dropdown 
@@ -214,7 +220,8 @@ const Modaladicionar = ({
                     paddingTop:'8px',
                     paddingBottom:'8px',
                     paddingLeft:'25px',
-                    paddingRight:'25px'
+                    paddingRight:'25px',
+                    outline: 'none'
                   }}
                 >Criar</button>
               </div>

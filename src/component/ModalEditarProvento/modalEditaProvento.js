@@ -112,7 +112,8 @@ const Modaleditaprovento = ({formikProvento,showPutProvento , setShowPutProvento
                     paddingTop:'8px',
                     paddingBottom:'8px',
                     paddingLeft:'25px',
-                    paddingRight:'25px'
+                    paddingRight:'25px',
+                    outline: 'none'
                   }}
                 >Atualizar</button>
               </div>

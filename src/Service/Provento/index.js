@@ -40,7 +40,9 @@ export const criar = async (data) => {
 
 export const excluir = async (data) => {
   return new Promise((resolve, reject) => {
-    window.$http.delete(`${url}/${data[id]}`).then();
+    window.$http.delete(`${url}/${data[id]}`).then((res)=>{
+      resolve(res)
+    });
   });
 };
 

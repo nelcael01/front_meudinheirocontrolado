@@ -107,7 +107,8 @@ const Modaleditarsaida = ({formikSaida, setShowPutSaida, showPutSaida}) => {
               paddingTop:'8px',
               paddingBottom:'8px',
               paddingLeft:'25px',
-              paddingRight:'25px'
+              paddingRight:'25px',
+              outline: 'none'
             }}
           >Atualizar</button>
         </div>
