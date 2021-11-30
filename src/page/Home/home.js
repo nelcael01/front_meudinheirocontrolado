@@ -170,7 +170,7 @@ const Home = ({}) => {
       <Content>
         <div style={{display:'flex', justifyContent: 'space-between'}}> 
           <h1 style={{marginTop:'0', marginBottom:'40px', color:'#10B981'}}>Bem Vindo! </h1>
-          <h1 style={{marginTop:'0', marginBottom:'40px', color: result>100 ? '#10B981' : 'red'}}>Saldo: R$ {result.toFixed(2)}</h1>
+          <h1 style={{marginTop:'0', marginBottom:'40px', color: result>100 ? '#10B981' : 'red', fontSize:'22px'}}>Saldo: R$ {result.toFixed(2)}</h1>
         </div>
         <TabView  >
           <TabPanel header="Provento" >
