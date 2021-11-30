@@ -21,8 +21,8 @@ import Modaladicionar from './../../component/ModalAdionar/modalAdicionar';
 import Modaleditaprovento from '../../component/ModalEditarProvento/modalEditaProvento';
 import Modaleditarsaida from '../../component/ModalEditaSaida/modalEditarSaida';
 
-const Home = () => {
-
+const Home = ({}) => {
+  
   // estado do modal
   const [showPost, setShowPost] = useState(false);
   const [showPutProvento, setShowPutProvento] = useState(false);
@@ -167,7 +167,7 @@ const Home = () => {
       <Menu /> 
       <Content>
         <div style={{display:'flex', justifyContent: 'space-between'}}> 
-          <h1 style={{marginTop:'0', marginBottom:'40px', color:'#10B981'}}>Home</h1>
+          <h1 style={{marginTop:'0', marginBottom:'40px', color:'#10B981'}}>Bem Vindo! </h1>
           <h1 style={{marginTop:'0', marginBottom:'40px', color: result>100 ? '#10B981' : 'red'}}>Saldo: R$ {result}</h1>
         </div>
         <TabView >

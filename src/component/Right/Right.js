@@ -46,7 +46,7 @@ const Right = () => {
     onSubmit: async (data) => {
       await buscaLogin(data).then(res => {
         if(res.data == true){
-          history.push({pathname:'/home'})
+          history.push({pathname:'/home', state:formikLogin.values.nome})
           setLoginError(false)
         }else{
           setLoginError(true)
@@ -73,10 +73,8 @@ const Right = () => {
         await atualizarSenha(data).then(res => {
           console.log(res.data);
           if (res.data === true) {
-            console.log('oi');
             setResultado("Atualizado!")
           }else{
-            console.log('oi');
             setResultado("Erro na atualização!")
           }
         });
