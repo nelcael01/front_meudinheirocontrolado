@@ -29,8 +29,6 @@ export const buscarAll = async () => {
 
 export const criar = async (data) => {
   return new Promise((resolve, reject) => {
-    console.log("dados para ser salvo");
-    console.log(data);
     window.$http.post(`${url}`, JSON.stringify(data)).then((res)=>{
       resolve(res)
     });

@@ -50,19 +50,20 @@ const Home = () => {
       setDataProvento(res.data)
     })
   }, []);
-
+  var res = 0;
+  var resMenos = 0;
   useEffect(() => {
-    if (dataSaida !== undefined && dataProvento !== undefined) {
+    if (dataSaida !== undefined && dataProvento !== undefined ) {
       dataProvento.map((key, item) => {
-        console.log(dataProvento[item].valor);
-        // setResult(dataProvento[item].valor + result)
+        res = dataProvento[item].valor + res
       })
-      // dataSaida.map((key, item) => {
-      //   console.log(dataSaida[item].valor + result);
-      //   setResult( result  - dataSaida[item].valor)
-      // })
+      dataSaida.map((key, item) => {
+        resMenos = dataSaida[item].valor + resMenos
+      })
+      setResult(res - resMenos)
     }
   },[dataProvento, dataSaida])
+
 
   // FORMIK SAIDA
   const formikSaida = useFormik({
@@ -123,7 +124,6 @@ const Home = () => {
           setShowPutProvento(false)
           setShowPost(false)
         })
-
       });
     },
   });
@@ -157,7 +157,6 @@ const Home = () => {
   }
 
   function onAdicionar() {
-    console.log('adicionar');
     setFormProvento(initFormProvento)
     setFormSaida(initFormSaida)
     setShowPost(true)
@@ -169,7 +168,7 @@ const Home = () => {
       <Content>
         <div style={{display:'flex', justifyContent: 'space-between'}}> 
           <h1 style={{marginTop:'0', marginBottom:'40px', color:'#10B981'}}>Home</h1>
-          <h1 style={{marginTop:'0', marginBottom:'40px', color:'#10B981'}}>Saldo: {result}</h1>
+          <h1 style={{marginTop:'0', marginBottom:'40px', color: result>100 ? '#10B981' : 'red'}}>Saldo: R$ {result}</h1>
         </div>
         <TabView >
           <TabPanel header="Provento" >
@@ -179,6 +178,7 @@ const Home = () => {
               dados={dataProvento}
               onEditarDado={(rowData) => onEditarProvento(rowData)}
               onExcluirDado={(rowData) => onExcluirProvento(rowData)}
+              on
             /> 
           </TabPanel>
           <TabPanel header="Saida" >
