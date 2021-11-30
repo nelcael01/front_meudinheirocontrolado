@@ -22,10 +22,12 @@ export const initFormSaida = {
 
 const url = 'http://localhost:3000/saidas'
 
-export const buscarAll = async () => {
-    return new Promise((resolve, reject) => {
-        resolve(window.$http.get(url))
+export const buscarAll = async (uri) => {
+  return new Promise((resolve, reject) => {
+    window.$http.get(`${url}/${uri}`).then((res) =>{
+      resolve(res)
     })
+  })
 }
 
 export const criar = async (data) => {

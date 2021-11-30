@@ -21,11 +21,14 @@ export const initFormProvento = {
     id_tipo_moeda: null,
   },
 };
-export const buscarAll = async () => {
+
+export const buscarAll = async (uri) => {
   return new Promise((resolve, reject) => {
-    resolve(window.$http.get(url));
-  });
-};
+    window.$http.get(`${url}/${uri}`).then((res) =>{
+      resolve(res)
+    })
+  })
+}
 
 export const criar = async (data) => {
   return new Promise((resolve, reject) => {

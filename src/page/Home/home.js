@@ -21,6 +21,9 @@ import Modaladicionar from './../../component/ModalAdionar/modalAdicionar';
 import Modaleditaprovento from '../../component/ModalEditarProvento/modalEditaProvento';
 import Modaleditarsaida from '../../component/ModalEditaSaida/modalEditarSaida';
 
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+
 const Home = ({}) => {
   
   // estado do modal
@@ -41,13 +44,14 @@ const Home = ({}) => {
 
   // estado do valor de saldo
   const [result, setResult] = useState(0);
-  
 
+  const dadosCloud = useSelector((state) => state.stock)
+  
   useEffect(() => {
-    buscarAllSaidas().then((res) => {
+    buscarAllSaidas(dadosCloud.id_logado).then((res) => {
       setDataSaida(res.data)
     })
-    buscarAllProvento().then((res)=>{
+    buscarAllProvento(dadosCloud.id_logado).then((res)=>{
       setDataProvento(res.data)
     })
   }, []);
@@ -169,7 +173,7 @@ const Home = ({}) => {
       <Menu /> 
       <Content>
         <div style={{display:'flex', justifyContent: 'space-between'}}> 
-          <h1 style={{marginTop:'0', marginBottom:'40px', color:'#10B981'}}>Bem Vindo! </h1>
+          <h1 style={{marginTop:'0', fontSize:'22px', marginBottom:'40px', color:'#10B981'}}>Que bom ter você aqui, {dadosCloud.nome}! </h1>
           <h1 style={{marginTop:'0', marginBottom:'40px', color: result>100 ? '#10B981' : 'red', fontSize:'22px'}}>Saldo: R$ {result.toFixed(2)}</h1>
         </div>
         <TabView  >

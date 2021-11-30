@@ -3,6 +3,10 @@ import {useState} from 'react';
 import { Container } from './Right_styled';
 import { Link } from "react-router-dom";
 
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+import { salve } from '../../store/Logado';
+
 // useformik
 import { useFormik } from "formik";
 
@@ -17,6 +21,7 @@ import { useHistory } from "react-router-dom";
 import ModalLoginError from './../ModalLoginError/modalLoginError';
 
 import ModalMudarSenha from './../ModalMudarSenha/modalMudarSenha';
+
 import { 
   classNames,
   isFormFieldValid,
@@ -29,8 +34,13 @@ const Right = () => {
   const [activeMudarSenha, setActiveMudarSenha] = useState(false);
   const [resultado, setResultado] = useState('');
 
-   // FORMIK SAIDA
-   const formikLogin = useFormik({
+  const dispath = useDispatch()
+
+  const dadosCloud = useSelector((state) => state.stock)
+  
+
+  // FORMIK SAIDA
+  const formikLogin = useFormik({
     enableReinitialize: true,
     initialValues: initFormLogin,
     validate: (data) => {
@@ -45,7 +55,8 @@ const Right = () => {
     },
     onSubmit: async (data) => {
       await buscaLogin(data).then(res => {
-        if(res.data == true){
+        if(res.data.logado == true){
+          dispath(salve(res.data))
           history.push({pathname:'/home', state:formikLogin.values.nome})
           setLoginError(false)
         }else{

@@ -7,10 +7,14 @@ import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
+import store from './store'
+import { Provider } from 'react-redux'
 
 ReactDOM.render(
+  <Provider store={store}>
     <BrowserRouter>
-      <App />
+        <App />
     </BrowserRouter>,
+  </Provider>,
   document.getElementById('root')
 );
