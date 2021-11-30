@@ -18,8 +18,19 @@ import { buscarAll as buscarAllUsuario } from '../../Service/Usuario';
 import { buscarAll as buscarAllTipoEntrada } from '../../Service/TipoEntrada';
 import { buscarAll as buscarAllTipoMoeda } from '../../Service/TipoMoeda';
 import { styled } from 'styled-components';
+import { initFormProvento } from '../../Service/Provento';
+import { initFormSaida } from '../../Service/Saida';
 
-const Modaladicionar = ({showPost, setShowPost, formikProvento,  activeIndex, setActiveIndex, formikSaida, dataSaida, dataProvento}) => {
+const Modaladicionar = ({
+  showPost,
+  setShowPost, 
+  formikProvento, 
+  activeIndex, 
+  setActiveIndex, 
+  formikSaida, 
+  dataSaida, 
+  dataProvento,
+}) => {
 
   const [optionsProvento, setOptionsProvento] = useState();
   const [optionsCategoriaDespesa, setOptionsCategoriaDespesa] = useState();
@@ -47,8 +58,6 @@ const Modaladicionar = ({showPost, setShowPost, formikProvento,  activeIndex, se
 
   function handleHide() {
     setShowPost(false)
-    formikSaida.resetForm();
-    formikProvento.resetForm();
   }
 
   return (

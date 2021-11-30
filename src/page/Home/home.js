@@ -157,8 +157,9 @@ const Home = ({}) => {
   }
 
   function onAdicionar() {
-    setFormProvento(initFormProvento)
-    setFormSaida(initFormSaida)
+    console.log('chamou');
+    formikSaida.resetForm();
+    formikProvento.resetForm()
     setShowPost(true)
   }
 
