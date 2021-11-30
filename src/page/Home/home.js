@@ -41,6 +41,7 @@ const Home = ({}) => {
 
   // estado do valor de saldo
   const [result, setResult] = useState(0);
+  
 
   useEffect(() => {
     buscarAllSaidas().then((res) => {
@@ -169,27 +170,41 @@ const Home = ({}) => {
       <Content>
         <div style={{display:'flex', justifyContent: 'space-between'}}> 
           <h1 style={{marginTop:'0', marginBottom:'40px', color:'#10B981'}}>Bem Vindo! </h1>
-          <h1 style={{marginTop:'0', marginBottom:'40px', color: result>100 ? '#10B981' : 'red'}}>Saldo: R$ {result}</h1>
+          <h1 style={{marginTop:'0', marginBottom:'40px', color: result>100 ? '#10B981' : 'red'}}>Saldo: R$ {result.toFixed(2)}</h1>
         </div>
         <TabView >
           <TabPanel header="Provento" >
-            <Tabela 
-              hasEventoAcao
-              camposTabela={camposTabelaProvento}
-              dados={dataProvento}
-              onEditarDado={(rowData) => onEditarProvento(rowData)}
-              onExcluirDado={(rowData) => onExcluirProvento(rowData)}
-              on
-            /> 
+            
+            { dataProvento !== undefined && dataProvento.length>=1 &&
+              <Tabela 
+                hasEventoAcao
+                camposTabela={camposTabelaProvento}
+                dados={dataProvento}
+                onEditarDado={(rowData) => onEditarProvento(rowData)}
+                onExcluirDado={(rowData) => onExcluirProvento(rowData)}
+              /> 
+            }
+            {dataProvento == 0 &&
+              <div style={{display:'flex', justifyContent:'center'}}>
+                <h3 style={{color:'#10B981'}}>Crie um novo provento, você está sem proventos cadastrados atualmente!</h3>
+              </div>
+            }
           </TabPanel>
-          <TabPanel header="Saida" >
-            <Tabela 
-              hasEventoAcao
-              camposTabela={camposTabelaSaida}
-              dados={dataSaida}
-              onEditarDado={(rowData) => onEditarSaida(rowData)}
-              onExcluirDado={(rowData) => onExcluirSaida(rowData)}
-            /> 
+          <TabPanel header="Saída" >
+            { dataSaida !== undefined && dataSaida.length>=1 &&
+              <Tabela 
+                hasEventoAcao
+                camposTabela={camposTabelaSaida}
+                dados={dataSaida}
+                onEditarDado={(rowData) => onEditarSaida(rowData)}
+                onExcluirDado={(rowData) => onExcluirSaida(rowData)}
+              /> 
+            }
+            {dataProvento == 0 &&
+              <div style={{display:'flex', justifyContent:'center'}}>
+                <h3 style={{color:'#10B981'}}>Crie uma nova saída, você está sem saídas cadastradas atualmente!</h3>
+              </div>
+            }
           </TabPanel>
         </TabView>
         <More onClick={onAdicionar}>
