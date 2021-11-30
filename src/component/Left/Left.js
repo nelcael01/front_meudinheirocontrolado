@@ -2,6 +2,7 @@ import {useState} from 'react'
 import { useFormik } from 'formik';
 import { Container, Title } from './Left_styled';
 import { InputText } from 'primereact/inputtext';
+import { InputMask } from 'primereact/inputmask';
 import { initForm as initFormUsuario, criar as criarUsuario } from '../../Service/Usuario';
 
 import { 
@@ -67,16 +68,16 @@ const Left = () => {
         </span>
         <span className="p-input-icon-left" style={{marginTop:'20px', width:'70%'}}>
             <i className="pi pi-phone" />
-            <InputText 
+            <InputMask
+              mask="(99) 99999-9999" 
+              placeholder="Telefone" 
               id="telefone"
-              name="telefone"
               value={formikUsuario.values.telefone} 
-              placeholder="Seu telefone"
               onChange={(e) => formikUsuario.handleChange(e)}
               style={{width:'100%'}}
               className={classNames({ "p-invalid": isFormFieldValid("telefone", formikUsuario) })}
             />
-            {getFormErrorMessage("telefone", formikUsuario)}
+              {getFormErrorMessage("telefone", formikUsuario)}
         </span>
         <span className="p-input-icon-left" style={{marginTop:'20px', width:'70%'}}>
             <i className="pi pi-map-marker" />
@@ -93,16 +94,16 @@ const Left = () => {
         </span>
         <span className="p-input-icon-left" style={{marginTop:'20px', width:'70%'}}>
             <i className="pi pi-id-card" />
-            <InputText 
+            <InputMask
+              mask="999.999.999-99" 
+              placeholder="CPF" 
               id="cpf"
-              name="cpf"
               value={formikUsuario.values.cpf} 
-              placeholder="Seu CPF" 
               onChange={(e) => formikUsuario.handleChange(e)}
               style={{width:'100%'}}
-              className={classNames({ "p-invalid": isFormFieldValid("cpf", formikUsuario) })}
+              className={classNames({ "p-invalid": isFormFieldValid("telefone", formikUsuario) })}
             />
-            {getFormErrorMessage("cpf", formikUsuario)}
+              {getFormErrorMessage("cpf", formikUsuario)}
         </span>
         <span className="p-input-icon-left" style={{marginTop:'20px', width:'70%'}}>
             <i className="pi pi-lock" />
