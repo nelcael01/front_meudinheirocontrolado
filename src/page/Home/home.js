@@ -172,7 +172,7 @@ const Home = ({}) => {
           <h1 style={{marginTop:'0', marginBottom:'40px', color:'#10B981'}}>Bem Vindo! </h1>
           <h1 style={{marginTop:'0', marginBottom:'40px', color: result>100 ? '#10B981' : 'red'}}>Saldo: R$ {result.toFixed(2)}</h1>
         </div>
-        <TabView >
+        <TabView  >
           <TabPanel header="Provento" >
             
             { dataProvento !== undefined && dataProvento.length>=1 &&
@@ -200,7 +200,7 @@ const Home = ({}) => {
                 onExcluirDado={(rowData) => onExcluirSaida(rowData)}
               /> 
             }
-            {dataProvento == 0 &&
+            {dataSaida == 0 &&
               <div style={{display:'flex', justifyContent:'center'}}>
                 <h3 style={{color:'#10B981'}}>Crie uma nova saída, você está sem saídas cadastradas atualmente!</h3>
               </div>
